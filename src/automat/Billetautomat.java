@@ -104,9 +104,14 @@ public class Billetautomat {
 	}
 
 	public void setBilletpris(int billetpris) {
+		if(montørtilstand){
 		this.billetpris = billetpris;
+		}
+	else {
+		System.out.println("Afvist - Du skal være logget ind først");
 	}
-
+	}
+		
 	public void nulstil() {
 		if (montørtilstand) {
 			antalBilletterSolgt = 0;
