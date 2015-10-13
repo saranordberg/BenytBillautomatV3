@@ -1,11 +1,13 @@
 package automat;
+
 /**
  * Model af en simpel billetautomat til enkeltbilletter med én fast pris.
  */
 public class Billetautomat {
-	private int billetpris;    // Prisen for én billet.
+	private int billetpris; // Prisen for én billet.
 	private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
-	private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
+	private int antalBilletterSolgt; // Antal billetter automaten i alt har
+										// solgt
 	private boolean montørtilstand;
 
 	/**
@@ -18,7 +20,7 @@ public class Billetautomat {
 	}
 
 	/**
-	 * Giver prisen for en billet. 
+	 * Giver prisen for en billet.
 	 */
 	public int getBilletpris() {
 		int resultat = billetpris;
@@ -29,7 +31,11 @@ public class Billetautomat {
 	 * Modtag nogle penge (i kroner) fra en kunde.
 	 */
 	public void indsætPenge(int beløb) {
-		balance = balance + beløb;
+		if (beløb <= 0) {
+			System.out.println("Ikke muligt at indsætte negative beløb");
+		} else {
+			balance = balance + beløb;
+		}
 	}
 
 	/**
@@ -40,11 +46,10 @@ public class Billetautomat {
 	}
 
 	/**
-	 * Udskriv en billet.
-	 * Opdater total og nedskriv balancen med billetprisen
+	 * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
 	 */
 	public void udskrivBillet() {
-		if (balance<10) {
+		if (balance < 10) {
 			System.out.println("Du mangler at indbetale nogle penge");
 		}
 		System.out.println("##########B##T#########");
@@ -54,7 +59,7 @@ public class Billetautomat {
 		System.out.println("#        " + billetpris + " kr.       #");
 		System.out.println("#                     #");
 		System.out.println("##########B##T#########");
-		System.out.println("# Du har " + (balance-billetpris) + " kr til gode       #");
+		System.out.println("# Du har " + (balance - billetpris) + " kr til gode       #");
 		System.out.println("##########B##T#########");
 		System.out.println();
 
@@ -62,15 +67,13 @@ public class Billetautomat {
 		balance = balance - billetpris; // Billetter koster 10 kroner
 	}
 
-
 	public int returpenge() {
 		int returbeløb = balance;
 		balance = 0;
-		System.out.println("Du får "+returbeløb+" kr retur");
+		System.out.println("Du får " + returbeløb + " kr retur");
 		return returbeløb;
 	}
 
-	
 	void montørLogin(String adgangskode) {
 		if ("1234".equals(adgangskode)) {
 			montørtilstand = true;
@@ -81,7 +84,6 @@ public class Billetautomat {
 			System.out.println("Montørtilstand deaktiveret");
 		}
 	}
-
 
 	public int getTotal() {
 		if (montørtilstand) {

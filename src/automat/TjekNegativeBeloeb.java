@@ -2,19 +2,13 @@ package automat;
 
 public class TjekNegativeBeloeb
 {
-	public static void main(String[] arg)
-	{
+	public static void main(String[] arg){
+		java.util.Scanner tastatur = new java.util.Scanner(System.in);
 		Billetautomat automat = new Billetautomat();
 
 		int antalFejl = 0;
 		int retur;
 		
-		retur = automat.getBilletpris();
-		if (retur != 10) {
-			System.out.println("FEJL, getBilletpris() != 10");
-		}
-
-		System.out.println("*** Tjek af salg af en billet");
 		automat.indsætPenge(-10); //Negativ beløb indsat
 		automat.udskrivBillet();
 		retur = automat.returpenge();
